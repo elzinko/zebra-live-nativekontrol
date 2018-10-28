@@ -54,6 +54,8 @@
 
 %MK2_VOL% = "MK2"/VOL 107
 
+%MK2_RESET% = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 0
+
 %MK2_TRACK_BASE% = %MK2% set 0 0 0 0 0 0 0
 
 %MK2_TRACK% = %MK2_TRACK_BASE% %TRACKI%
@@ -76,6 +78,8 @@
 
 %PUSH% = "PUSH"/dev
 
+%PUSH_RESET% = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 0
+
 %PUSH_ON% = "PUSH"/MUTE OFF
 
 %PUSH_ARM% = "PUSH"/ARM ON
@@ -92,7 +96,7 @@
 
 %PUSH_LOCK_TRACK% = ARSENAL PS%PUSH_VERSION%_A LOCK
 
-%PUSH_DEV_LOCK% = CS "Arsenal PS%PUSH_VERSION% A" DEV LOCK
+%PUSH_DEV_LOCK% = CS "Arsenal PS%PUSH_VERSION%_A" DEV LOCK
 
 # E_MODE 5 : DEVICE MODE
 %PUSH_DEVICE% = ARSENAL PS%PUSH_VERSION%_A E_MODE 5
@@ -109,5 +113,4 @@
 
 %PUSH_IN_2% = "PUSH"/IN "Arsenal_PS2_A Input (Ableton Push 2 (User Port))"
 
-
-
+%PUSH_0% = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 0
