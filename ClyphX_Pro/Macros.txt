@@ -24,7 +24,7 @@
 
 # MK2
 
-$MK2_1_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(1) SOLO ON; "MK2"/dev 1.1.1.1) SEL
+$MK2_1_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(1) SOLO ON; "MK2"/dev(1.1.1.1) SEL
 $MK2_1_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(2) SOLO ON; "MK2"/dev(1.1.1.2) SEL
 $MK2_1_3$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(3) SOLO ON; "MK2"/dev(1.1.1.3) SEL
 $MK2_2_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 2; "MK2"/dev(1.2.1) ch(all) SOLO OFF; "MK2"/dev(1.2.1) ch(1) SOLO ON; "MK2"/dev(1.2.1.1) SEL
@@ -50,7 +50,7 @@ $MK2_INIT$ = %MK2_ON%; %MK2_ARM%; %MK2_VOL%
 # on peut rajouter un PUSH_TRACK_SEL à la fin mais comme le push est deja locké, il vaut mieux laisser le focus sur le MK2
 # $PUSH_I$ = %PUSH%(1) SEL; %PUSH_TRACK_BASE% %TRACKI%; %PUSH%(1.%TRACKI%.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
 $PUSH_I$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 %TRACKI%; "PUSH"/dev(1.%TRACKI%.1) SEL
-$PUSH_1$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 1; "PUSH"/dev(1.1.1) SEL
+$PUSH_1$ = "PUSH"/dev SEL; "PUSH"/dev set 0 0 0 0 0 0 0 1; "PUSH"/DEV CSEL %TRACKI%; "PUSH"/dev(1.1.1) SEL
 $PUSH_2$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 2; "PUSH"/dev(1.2.1) SEL
 $PUSH_3$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 3; "PUSH"/dev(1.3.1) SEL
 $PUSH_4$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 4; "PUSH"/dev(1.4.1) SEL
@@ -58,5 +58,5 @@ $PUSH_INIT$ = %PUSH_USER%; %PUSH_TRACK_SEL%; %PUSH_TRACK_SEL%; %PUSH_LOCK_TRACK%
 
 
 # ALL
-$RESET_ALL$ = %PUSH_RESET%; %MK2_RESET%; PUSH MODE LIVE
+$RESET_ALL$ = %PUSH_RESET%; %MK2_RESET%
 $INST_SEL$ = "PUSH"/SEL; "MK2"/SEL
