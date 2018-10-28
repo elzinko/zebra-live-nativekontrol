@@ -54,7 +54,7 @@
 
 %MK2_VOL% = "MK2"/VOL 107
 
-%MK2_RESET% = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 0
+%MK2_RESET% = "MK2"/dev(1) set 0 0 0 0 0 0 0 0
 
 %MK2_TRACK_BASE% = %MK2% set 0 0 0 0 0 0 0
 
@@ -78,7 +78,7 @@
 
 %PUSH% = "PUSH"/dev
 
-%PUSH_RESET% = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 0
+%PUSH_RESET% = "PUSH"/dev(1) set 0 0 0 0 0 0 0 0
 
 %PUSH_ON% = "PUSH"/MUTE OFF
 
@@ -86,7 +86,7 @@
 
 %PUSH_VOL% = "PUSH"/VOL 107
 
-%PUSH_TRACK_BASE% = %PUSH% set 0 0 0 0 0 0 0
+%PUSH_TRACK_BASE% = %PUSH%(1) set 0 0 0 0 0 0 0
 
 %PUSH_LIVE% = PUSH MODE LIVE
 
