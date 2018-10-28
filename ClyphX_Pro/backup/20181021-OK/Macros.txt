@@ -1,0 +1,53 @@
+#********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+#********************************** [SETTINGS] *****************************************
+
+# Below, you can specify a list of Macros to use in Action Lists.
+
+# The entry format is $MACRO_NAME$ = ACTION(s)
+
+# MACRO_NAME = A unique one-word name for the Macro enclosed in dollar signs.
+# ACTION(s) = The Action(s) to assign to the Macro.  You can also assign Macros to other
+              Macros.
+
+# See the Macros section of the manual for more info on Macros.
+
+# MK2
+
+$MK2_INIT$ = %MK2_ON%; %MK2_ARM%; %MK2_VOL%;
+
+$MK2_1_1$ = %MK2%(1) SEL; %MK2_TRACK_BASE% 1; %MK2%(1.1.1) ch(all) SOLO OFF; %MK2%(1.1.1) ch(1) SOLO ON; %MK2%(1.1.1.1) SEL
+$MK2_1_2$ = %MK2%(1) SEL; %MK2_TRACK_BASE% 1; %MK2%(1.1.1) ch(all) SOLO OFF; %MK2%(1.1.1) ch(2) SOLO ON; %MK2%(1.1.1.2) SEL
+$MK2_1_3$ = %MK2%(1) SEL; %MK2_TRACK_BASE% 1; %MK2%(1.1.1) ch(all) SOLO OFF; %MK2%(1.1.1) ch(3) SOLO ON; %MK2%(1.1.1.3) SEL
+$MK2_2_1$ = %MK2%(1) SEL; %MK2_TRACK_BASE% 2; %MK2%(1.2.1) ch(all) SOLO OFF; %MK2%(1.2.1) ch(1) SOLO ON; %MK2%(1.2.1.1) SEL
+$MK2_2_2$ = %MK2%(1) SEL; %MK2_TRACK_BASE% 2; %MK2%(1.2.1) ch(all) SOLO OFF; %MK2%(1.2.1) ch(2) SOLO ON; %MK2%(1.2.1.2) SEL
+
+# to select at the end use smthing like : %MK2%(1.%TRACKI%.1.1) SEL;
+$MK2_I_1$ = %MK2%(1) SEL; %MK2_TRACK_BASE% %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(1) SOLO ON; %MK2%(1.%TRACKI%.1.1) SEL;
+$MK2_I_2$ = %MK2%(1) SEL; %MK2_TRACK_BASE% %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(2) SOLO ON; %MK2%(1.%TRACKI%.1.2) SEL;
+$MK2_I_3$ = %MK2%(1) SEL; %MK2_TRACK_BASE% %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(3) SOLO ON; %MK2%(1.%TRACKI%.1.3) SEL;
+$MK2_I_12$ = %MK2%(1) SEL; %MK2_TRACK_BASE% %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(1) SOLO ON; %MK2%(1.%TRACKI%.1) ch(2) SOLO ON; %MK2%(1.%TRACKI%.1.1) SEL;
+$MK2_I_23$ = %MK2%(1) SEL; %MK2_TRACK_BASE% %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(2) SOLO ON; %MK2%(1.%TRACKI%.1) ch(3) SOLO ON; %MK2%(1.%TRACKI%.1.2) SEL;
+
+$MK2_I_SEL$ = %MK2%(1.%TRACKI%.1.%MK2_INSTI%) SEL
+
+# PUSH
+
+$PUSH_INIT$ = %PUSH_USER%; %PUSH_TRACK_SEL%; %PUSH_LOCK%; %PUSH_DEVICE%; %PUSH_KEY%; %PUSH_ON%; %PUSH_ARM%; %PUSH_VOL%;
+
+$PUSH_SEL$ = %PUSH%(1.%TRACKI%.1) SEL
+
+# on peut rajouter un %PUSH_TRACK_SEL% à la fin mais comme le push est deja locké, il vaut mieux laisser le focus sur le MK2
+# $PUSH_I$ = %PUSH%(1) SEL; %PUSH% set 0 0 0 0 0 0 0 %TRACKI%
+$PUSH_I$ = %PUSH%(1) SEL; %PUSH% set 0 0 0 0 0 0 0 %TRACKI%;
+$PUSH_1$ = %PUSH%(1) SEL; %PUSH% set 0 0 0 0 0 0 0 1; %PUSH%(1.%TRACKI%.1) SEL;
+$PUSH_2$ = %PUSH%(1) SEL; %PUSH% set 0 0 0 0 0 0 0 2; %PUSH%(1.%TRACKI%.1) SEL;

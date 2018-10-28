@@ -1,0 +1,196 @@
+VERSION = 1.0.1
+
+********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+
+***************************** [CLYPHX SNAP SETTINGS] *********************************
+
+# This setting determines the Track(s) to include in ClyphX Snaps.
+
+# The possible settings are ALL (for all Tracks) or CURRENT (for the current Track).
+
+TRACKS_TO_SNAP = ALL
+
+
+# By default, the default ClyphX Snap Action (stores the Volume, Pan and Send settings
+# of Tracks as well as the settings of the first Device on Tracks) will be used.  This
+# setting allows you to specify Modifiers, which modify the settings that will be stored.
+# The Modifiers you can specify here can be found in the Snap Actions section of ClyphX's
+# manual.
+
+# The possible settings are one or more Modifiers or NONE to use the default ClyphX Snap
+# Action.
+
+SNAP_MODIFIERS = None
+
+
+# For use with ClyphX Pro only! This setting allows you to specify the Recall Action
+# that will be used for recalling Snaps.
+
+# The possible settings are any of the three Recall Actions available in ClyphX Pro.
+
+RECALL_ACTION = RECALL
+
+
+
+***************************** [CLYPHX ACTION SETTINGS] *******************************
+
+# The following settings determine the ClyphX action(s) each Button in the Matrix
+# will trigger.
+
+# For each Button below, you can specify either:
+
+# - None, which will cause the Button to have no function.
+
+# - A list of settings composed of the following:
+#    Color, Press Action List, Release Action List
+
+#    Or, if you're using ClyphX Pro, the list should look like this (notice the use of the colon!):
+#    Color, Press Action List : Release Action List
+
+#    SETTINGS DESCRIPTIONS:
+#    Color - Specifies the LED color the Button should use.  The names of the usable
+#            LED colors can be found in the LED COLORS section below.
+
+#    Press Action List - Specifies the ClyphX Action List to perform when the Button
+#                        is pressed.
+
+#    Release Action List (optional) - Specifies the ClyphX Action List to perform
+#                                     when the Button is released.
+
+#    SETTINGS EXAMPLES:
+#    CX_ROW_1_BTN_1 = GREEN, Clip Loop *0.5 ; Clip Loop Show
+#    CX_ROW_1_BTN_2 = AMBER, Clip Loop *2 ; Clip Loop Show
+#    CX_ROW_1_BTN_3 = RED, All/Vol Reset ; All/Pan Reset , 1/Sel 1
+
+
+CX_ROW_1_BTN_1 = None
+CX_ROW_1_BTN_2 = None
+CX_ROW_1_BTN_3 = None
+CX_ROW_1_BTN_4 = None
+CX_ROW_1_BTN_5 = None
+CX_ROW_1_BTN_6 = None
+CX_ROW_1_BTN_7 = None
+CX_ROW_1_BTN_8 = None
+
+CX_ROW_2_BTN_1 = None
+CX_ROW_2_BTN_2 = None
+CX_ROW_2_BTN_3 = None
+CX_ROW_2_BTN_4 = None
+CX_ROW_2_BTN_5 = None
+CX_ROW_2_BTN_6 = None
+CX_ROW_2_BTN_7 = None
+CX_ROW_2_BTN_8 = None
+
+CX_ROW_3_BTN_1 = None
+CX_ROW_3_BTN_2 = None
+CX_ROW_3_BTN_3 = None
+CX_ROW_3_BTN_4 = None
+CX_ROW_3_BTN_5 = None
+CX_ROW_3_BTN_6 = None
+CX_ROW_3_BTN_7 = None
+CX_ROW_3_BTN_8 = None
+
+CX_ROW_4_BTN_1 = None
+CX_ROW_4_BTN_2 = None
+CX_ROW_4_BTN_3 = None
+CX_ROW_4_BTN_4 = None
+CX_ROW_4_BTN_5 = None
+CX_ROW_4_BTN_6 = None
+CX_ROW_4_BTN_7 = None
+CX_ROW_4_BTN_8 = None
+
+CX_ROW_5_BTN_1 = None
+CX_ROW_5_BTN_2 = None
+CX_ROW_5_BTN_3 = None
+CX_ROW_5_BTN_4 = None
+CX_ROW_5_BTN_5 = None
+CX_ROW_5_BTN_6 = None
+CX_ROW_5_BTN_7 = None
+CX_ROW_5_BTN_8 = None
+
+CX_ROW_6_BTN_1 = None
+CX_ROW_6_BTN_2 = None
+CX_ROW_6_BTN_3 = None
+CX_ROW_6_BTN_4 = None
+CX_ROW_6_BTN_5 = None
+CX_ROW_6_BTN_6 = None
+CX_ROW_6_BTN_7 = None
+CX_ROW_6_BTN_8 = None
+
+CX_ROW_7_BTN_1 = None
+CX_ROW_7_BTN_2 = None
+CX_ROW_7_BTN_3 = None
+CX_ROW_7_BTN_4 = None
+CX_ROW_7_BTN_5 = None
+CX_ROW_7_BTN_6 = None
+CX_ROW_7_BTN_7 = None
+CX_ROW_7_BTN_8 = None
+
+CX_ROW_8_BTN_1 = None
+CX_ROW_8_BTN_2 = None
+CX_ROW_8_BTN_3 = None
+CX_ROW_8_BTN_4 = None
+CX_ROW_8_BTN_5 = None
+CX_ROW_8_BTN_6 = None
+CX_ROW_8_BTN_7 = None
+CX_ROW_8_BTN_8 = None
+
+
+
+******************************** [LED COLORS] ****************************************
+
+# Following is the list of LED color names that can be used in your settings above.
+
+# AMBER
+# AMBER_DIM
+# AMBER_HALF
+# AQUA
+# AQUA_DIM
+# AQUA_HALF
+# BLACK
+# BLUE
+# BLUE_DIM
+# BLUE_HALF
+# GREEN
+# GREEN_DIM
+# GREEN_HALF
+# LIME
+# LIME_DIM
+# LIME_HALF
+# MAGENTA
+# MAGENTA_DIM
+# MAGENTA_HALF
+# MINT
+# MINT_DIM
+# MINT_HALF
+# OCEAN
+# OCEAN_DIM
+# OCEAN_HALF
+# PURPLE
+# PURPLE_DIM
+# PURPLE_HALF
+# RED
+# RED_DIM
+# RED_HALF
+# SKY
+# SKY_DIM
+# SKY_HALF
+# VIOLET
+# VIOLET_DIM
+# VIOLET_HALF
+# WHITE
+# WHITE_DIM
+# WHITE_HALF
+# YELLOW
+# YELLOW_DIM
+# YELLOW_HALF

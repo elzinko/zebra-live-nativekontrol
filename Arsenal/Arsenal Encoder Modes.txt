@@ -1,0 +1,151 @@
+Following are the names of the Arsenal Encoder Modes that can be used in your Arsenal
+scripts along with a brief description of each Mode. You can specify the Modes your
+Arsenal scripts should use in each script's Settings-Encoder Mode List.txt file.
+
+
+NAME: CLIP
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling properties of the selected Clip on
+the current Track. 
+
+NAME: DEVICE
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling parameters of the selected Device
+(indicated by a blue hand icon on the Device's title bar). 
+
+NAME: DEVICE_2
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the second set of 8 parameters of
+the selected Device (indicated by a blue hand icon on the Device's title bar).  This
+Mode should only be used when Device Mode is also in use. 
+
+NAME: DEVICE_3
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the third set of 8 parameters of
+the selected Device (indicated by a blue hand icon on the Device's title bar).  This
+Mode should only be used when Device Mode and Device 2 Mode are also in use. 
+
+NAME: DEVICE_4
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the fourth set of 8 parameters of
+the selected Device (indicated by a blue hand icon on the Device's title bar).  This
+Mode should only be used when Device Mode, Device 2 Mode and Device 3 Mode are also
+in use. 
+
+NAME: DRUM_PAD_MIX
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Mixer-related parameters of the
+selected Drum Rack Pad on the current Track. 
+
+NAME: DRUM_PAD_PARAMS
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling special parameters of the selected
+Drum Rack Pad as well as the Macros of the Drum Rack on the current Track. 
+
+NAME: GLOBAL
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling global properties. 
+
+NAME: HM_CHAIN
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for HazMapping to parameters of the selected
+Chain of a Rack on the current Track. 
+
+NAME: HM_MIX
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for HazMapping to parameters across the Tracks
+within the Grid Selector. 
+
+NAME: HM_TRACK
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for HazMapping to parameters on the current
+Track. 
+
+NAME: LEVELS
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the Volume of the Tracks within the
+Grid Selector as well as displaying Level Meters.  This Mode can only be used with the
+Maschine Jam. 
+
+NAME: MIDI
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for sending MIDI data (Control Change messages)
+to MIDI Tracks to control instruments that natively respond to these messages or that
+feature MIDI learning capabilities that allow you to learn/assign parameters to MIDI
+messages.
+
+This Mode is NOT compatible with ENCODERS that send relative values or with
+Arsenal_NIMJ. 
+
+NAME: MIX
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Mixer-related parameters of the
+Tracks within the Grid Selector. 
+
+NAME: PAN
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the Panning of the Tracks within
+the Grid Selector. 
+
+NAME: PAN_AND_SENDS
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Panning and Send levels of the
+Tracks within the Grid Selector.  You can toggle between the parameter to control
+via the Button used for selecting this Mode.
+
+This Mode is NOT compatible with scripts that have more than one set of ENCODERS. 
+
+NAME: RTN_MIX
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Mixer-related parameters of the
+first 8 Return Tracks. 
+
+NAME: RTN_PAN
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the Panning of the first 8 Return
+Tracks. 
+
+NAME: RTN_SEND
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling one of the Send levels of the first
+8 Return Tracks. 
+
+NAME: RTN_SENDS
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Send levels of the first 8 Return
+Tracks. 
+
+NAME: RTN_VOLUME
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the Volume of the first 8 Return
+Tracks. 
+
+NAME: SEND
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling one of the Send levels of the
+Tracks within the Grid Selector. 
+
+NAME: SENDS
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Send levels of the Tracks within
+the Grid Selector. 
+
+NAME: TRACK
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Mixer-related parameters of the
+current Track. 
+
+NAME: TRACK_ROUTE
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling Routing and Mixer-related
+parameters of the current Track. 
+
+NAME: USER
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for MIDI mapping. 
+
+NAME: VOLUME
+VERSION: v1.0.8
+This Mode sets up the ENCODERS for controlling the Volume of the Tracks within the
+Grid Selector. 
+

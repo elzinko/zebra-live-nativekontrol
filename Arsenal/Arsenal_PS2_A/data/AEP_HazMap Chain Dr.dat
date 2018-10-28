@@ -1,0 +1,133 @@
+(dp0
+S'assignments'
+p1
+(lp2
+(dp3
+S'device_class_name'
+p4
+VDrumGroupDevice
+p5
+sS'device_instance_name'
+p6
+NsS'parameter'
+p7
+VMacro 1
+p8
+sS'rack'
+p9
+VInstrumentGroupDevice
+p10
+sS'mixer'
+p11
+I00
+sa(dp12
+g4
+VDrumGroupDevice
+p13
+sg6
+Nsg7
+VMacro 2
+p14
+sg9
+VInstrumentGroupDevice
+p15
+sg11
+I00
+sa(dp16
+g4
+VDrumGroupDevice
+p17
+sg6
+Nsg7
+VMacro 3
+p18
+sg9
+VInstrumentGroupDevice
+p19
+sg11
+I00
+sa(dp20
+g4
+VDrumGroupDevice
+p21
+sg6
+Nsg7
+VMacro 4
+p22
+sg9
+VInstrumentGroupDevice
+p23
+sg11
+I00
+sa(dp24
+g4
+VDrumGroupDevice
+p25
+sg6
+Nsg7
+VMacro 5
+p26
+sg9
+VInstrumentGroupDevice
+p27
+sg11
+I00
+sa(dp28
+g4
+VDrumGroupDevice
+p29
+sg6
+Nsg7
+VMacro 6
+p30
+sg9
+VInstrumentGroupDevice
+p31
+sg11
+I00
+sa(dp32
+g4
+VDrumGroupDevice
+p33
+sg6
+Nsg7
+VMacro 7
+p34
+sg9
+VInstrumentGroupDevice
+p35
+sg11
+I00
+sa(dp36
+g4
+VDrumGroupDevice
+p37
+sg6
+Nsg7
+VMacro 8
+p38
+sg9
+VInstrumentGroupDevice
+p39
+sg11
+I00
+sasS'page_names'
+p40
+(lp41
+VInstrument Rack  |  Electrified Kit 06: Macro 1
+p42
+aVInstrument Rack  |  Electrified Kit 06: Macro 2
+p43
+aVInstrument Rack  |  Electrified Kit 06: Macro 3
+p44
+aVInstrument Rack  |  Electrified Kit 06: Macro 4
+p45
+aVInstrument Rack  |  Electrified Kit 06: Macro 5
+p46
+aVInstrument Rack  |  Electrified Kit 06: Macro 6
+p47
+aVInstrument Rack  |  Electrified Kit 06: Macro 7
+p48
+aVInstrument Rack  |  Electrified Kit 06: Macro 8
+p49
+as.

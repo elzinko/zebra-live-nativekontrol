@@ -1,0 +1,32 @@
+#********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+#********************************** [SETTINGS] *****************************************
+
+# Below, you can specify SysEx messages that can be sent from the Macros of a MIDI Rack.
+
+# The entry format is: NAME = SYSEX, MIN_VALUE, MAX_VALUE
+
+# NAME = A unique name for the SysEx message. This is the name you'll specify for the
+#        Macro that will send the message.
+# SYSEX = The SysEx message (in decimal). This must at least 4 bytes long. It must start
+#         with 240 and end with 247. All other values in the message must be in the range
+#         of 0 - 127. The word 'var' represents the variable byte in the message, the
+#         byte whose value will be controlled by the Macro.
+# MIN_VALUE = The minimum value of the variable byte in the range of 0 - 127.
+# MAX_VALUE = The maximum value of the variable byte in the range of 0 - 127.
+
+
+# The SysEx messages listed below are just examples and can be removed.
+
+Motif Arp I/O = 240 67 16 111 64 112 21 var 247, 0, 1
+Motif Arp Type = 240 67 16 111 64 112 20 var 247, 0, 127
+Motif Mode = 240 67 16 111 10 0 1 var 247, 0, 3

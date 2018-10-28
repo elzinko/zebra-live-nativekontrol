@@ -1,0 +1,114 @@
+VERSION = 1.0.3
+
+********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+
+********************************** [GENERAL SETTINGS] ********************************
+
+# This setting determines whether or not a Button assigned to control the Session
+# Record button will commence Session recording across all armed Tracks or not.  When
+# FALSE, Session recording will only occur upon the current Track.
+
+# The possible settings are TRUE or FALSE.
+
+ALLOW_MULTI_TRACK_SESSION_RECORD = TRUE
+
+
+# This setting determines whether or not Fixed Length Recording is turned on by default.
+# When on, recording Clips via this script will result in Clips with fixed lengths.  This
+# is especially useful in the case of scripts that don't have the ability to turn Fixed
+# Length Recording on/off.
+
+# The possible settings are TRUE or FALSE.
+
+FIXED_LENGTH_ON_BY_DEFAULT = FALSE
+
+
+# This setting determines the default fixed length (in bars) to use for creating Clips
+# and for recording Clips when Fixed Length Recording is turned on.  This is especially
+# useful in the case of scripts that don't have the ability to adjust fixed length.
+
+# The possible settings are any whole number between 1 and 32.
+
+FIXED_LENGTH_DEFAULT_LENGTH = 2
+
+
+# This setting determines whether or not Modes that send MIDI data to MIDI Tracks
+# should automatically arm Tracks upon selection.
+
+# The possible settings are TRUE or FALSE.
+
+SHOULD_AUTO_ARM = TRUE
+
+
+# This setting determines whether or not the Volume controls available in this script
+# will be limited to 0db.
+
+# The possible settings are TRUE or FALSE.
+
+LIMIT_VOLUME_CONTROL_TO_0_DB = FALSE
+
+
+# This setting determines whether or not Modes that control groups of Tracks will
+# place Return Tracks to the right of regular Tracks (posssibly with a space between)
+# when the number of regular Tracks under control is less than the number of controls
+# available for controlling Tracks.
+
+# The possible settings are TRUE or FALSE.
+
+RIGHT_JUSTIFY_RETURNS = TRUE
+
+
+
+********************************** [CLIP LOOP EDITING] *******************************
+
+# This setting determines whether or not a Clip's Start Marker should be moved to the
+# beginning of the Clip's Loop when the Clip's Loop is edited.
+
+# The possible settings are TRUE or FALSE.
+
+MOVE_START_WITH_LOOP = TRUE
+
+
+# This setting determines whether or not to zoom in on the Clip's Loop when the Clip's
+# Loop is edited.
+
+# The possible settings are TRUE or FALSE.
+
+ZOOM_LOOP_ON_EDIT = TRUE
+
+
+
+********************************** [MODE LINKING SETTINGS] ****************************
+
+# This setting specifies the Arsenal-powered Control Surface script that this script's
+# Encoder and/or Matrix Modes will be linked to.  When linked, switching between Modes in
+# this script will also switch between Modes in the script it's linked to and vice versa.
+
+# IMPORTANT NOTE! The script names that you should use here are exactly as shown in
+# Live's Control Surface menu.  However, if the name contains spaces (such as Arsenal LPP A),
+# the spaces should be replaced with underscores (such as Arsenal_LPP_A).
+
+# The possible settings are the name of an Arsenal-powered Control Surface script or NONE.
+
+LINK_MODES_TO = NONE
+
+
+# This setting determines the way in which this script will be linked to the script
+# specified above.
+
+# The possible settings are:
+#    MATRIX (to link Matrix Mode switching)
+#    ENCODER (to link Encoder Mode switching)
+#    BOTH (to link Matrix and Encoder Mode switching)
+
+MODE_LINK_TYPE = MATRIX

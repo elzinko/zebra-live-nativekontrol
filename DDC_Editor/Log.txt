@@ -1,0 +1,459 @@
+Opening Log on 9-30-2018
+ 
+************************************************
+SYSTEM INFO
+************************************************
+ 
+os.arch=x86_64
+os.name=Mac OS X
+os.version=10.13.3
+java.version=1.8.0_144
+ 
+************************************************
+APP INFO
+************************************************
+ 
+Editor version=v1.0.5
+ 
+************************************************
+EVENT LOG
+************************************************
+ 
+10203 ms - LiveTransfer: Adding script dir - /Applications/Ableton Live 10 Suite.app
+10204 ms - LiveTransfer: Error upon reading user dir file - /Users/elzinko/nativeKONTROL/DDC_Editor/LiveDirs.txt (No such file or directory)
+10262 ms - Main: Read settings file.
+10279 ms - Main: Read control alias file.
+2062050 ms - StandardDialogs: Successful Import - Successfully imported the following file(s):
+ - CustomEncoderElement.py
+
+Files will now be transferred to Live.
+2062051 ms - Main: Read settings file.
+2063248 ms - StandardDialogs: File Write/Transfer Successful - Your settings were successfully written and transferred to:
+/Applications/Ableton Live 10 Suite.app/Contents/App-Resources/MIDI Remote Scripts/DDC_1
+
+You will need to load a new set/re-load the current set in Live in order for the changes you made to take effect.
+ 
+************************************************
+alt_consts.py
+************************************************
+ 
+#----------------------------------------------------------------------------------------
+# This file defines alternate CC/note numbers that the controls in this script should use.
+# Please note the following:
+# --> Do not change the spacing or punctuation in this file.
+# --> Do not change the name of this file.
+# --> Do not use a CC or note number on a particular channel more than once.
+# --> The channel that controls use is determined in the DDC Editor.
+# --> The type of MIDI message (CC/note) that buttons use is determined in the DDC Editor.
+#----------------------------------------------------------------------------------------
+""" The CC numbers to use for encoder groups A-D. """
+ENC_GROUP_NUMS = ((56, 57, 58, 59, 60, 61, 62, 63),             # Group A : Encoders
+                  (8, 9, 10, 11, 12, 13, 14, 15),      # Group B : Knobs
+                  (16, 17, 18, 19, 20, 21, 22, 23),     # Group C : Faders
+                  (80, 81, 82, 83, 84, 85, 86, 87))     # Group D : Not Used
+""" Whether or not encoder group A uses pitch bend messages on ch1 - 8.
+If this is set to True, the CC#s for Group A above are ignored. """
+ENC_GROUP_A_PB = False
+""" Whether or not encoder group B uses pitch bend messages on ch9 - 16.
+If this is set to True, the CC#s for Group B above are ignored. """
+ENC_GROUP_B_PB = False
+""" The note (or CC) numbers to use for button groups A-D. """
+BTN_GROUP_NUMS = ((24, 25, 26, 27, 28, 29, 30, 31),     # Group A : Buttons Left 1st Row
+                  (32, 33, 34, 35, 36, 37, 38, 39),     # Group B : Buttons Left 2nd Row
+                  (40, 41, 42, 43, 44, 45, 46, 47),     # Group C : Buttons Right 1st Row
+                  (48, 49, 50, 51, 52, 53, 54, 55))     # Group D : Buttons Right 2nd Row
+""" The note (or CC) number to use for the lock button. """
+LOCK_BTN_NUM = 88  # Not Used
+""" The note (or CC) numbers to use for the direct page buttons. """
+DIRECT_PAGE_BTN_NUMS = (80, 81, 82, 83, 84, 85, 86, 87) # those are notes and note cc causing side effects (36, 37, 38, 39, 40, 41, 42, 43)
+""" The note (or CC) number to use for the previous page button. """
+PREV_PAGE_BTN_NUM = 89  # Not Used
+""" The note (or CC) number to use for the next page button. """
+NEXT_PAGE_BTN_NUM = 90  # Not Used
+ 
+************************************************
+SLDisplayLine.py
+************************************************
+ 
+import _Framework.Task
+from _Framework.ControlSurfaceComponent import ControlSurfaceComponent
+SELECTED_CHAR = 127
+UP_ARROW_CHAR = 0
+DOWN_ARROW_CHAR = 1
+HORZ_STACK_CHAR = 2
+FULL_BLOCK_CHAR = 29
+RIGHT_ARROW_CHAR = 30
+LEFT_ARROW_CHAR = 31
+SPECIAL_CHARS = (SELECTED_CHAR, UP_ARROW_CHAR, DOWN_ARROW_CHAR, HORZ_STACK_CHAR,
+                 RIGHT_ARROW_CHAR, LEFT_ARROW_CHAR, FULL_BLOCK_CHAR)
+CHARS_TO_REMOVE = (' ', 'I', 'i', 'O', 'o', 'U', 'u', 'E', 'e', 'A', 'a')
+HALF_SEGMENT = 9
+FULL_SEGMENT = 18
+FULL_SEGMENT_OFFSETS = (0, 17, 34, 51)
+HALF_SEGMENT_OFFSETS = (0, 9, 18, 27, 36, 45, 54, 63)
+BLANK_LINE = [32 for i in range(72)]
+class SLDisplayLine(ControlSurfaceComponent):
+    """ SLDisplayLine handles one of the SL's 4 display lines. """
+    def __init__(self, line_index):
+        assert line_index in (1, 2, 3, 4)
+        super(SLDisplayLine, self).__init__(name='Display_Line_%d' % line_index)
+        self._header = [240, 0, 32, 41, 3, 3, 18, 0, 4, 0, 2, 1, 0, line_index, 4]
+        self._current_line = list(BLANK_LINE)
+        self._momentary_line = []
+        self._last_sent_message = None
+        self._send_message_task = self._tasks.add(_Framework.Task.run(self._send_message))
+        self._send_message_task.kill()
+    def write(self, offset, length, string_to_write, center=False, spc_start_char=-1,
+              spc_end_char=-1):
+        """ Writes the given string at the given offset and crops to the given length.
+            Can also center string if specified and can also write a special char at the
+            start or end of the string if specified. """
+        self._current_line = self._do_write(self._current_line, offset, length,
+                                            string_to_write, False, center,
+                                            spc_start_char, spc_end_char)
+        self._request_send_message()
+    def write_momentary(self, offset, length, string_to_write, clear=False, center=False):
+        """ Momentarily writes the given string at the given offset and crops to the
+        given length.  Call revert to reset back to default. Can also clear rest of line
+        and center string if specified. """
+        self._momentary_line = self._do_write(self._momentary_line, offset, length,
+                                              string_to_write, clear, center, -1, -1)
+        self._request_send_message()
+    def _do_write(self, var, offset, length, string_to_write, clear, center,
+                  spc_start_char, spc_end_char):
+        """ Performs the actual write and returns modified variable to caller. """
+        assert offset in HALF_SEGMENT_OFFSETS
+        assert length in range(FULL_SEGMENT + 1)
+        assert spc_start_char == -1 or spc_start_char in SPECIAL_CHARS
+        assert spc_end_char == -1 or spc_end_char in SPECIAL_CHARS
+        if spc_start_char != -1:
+            new_chars = [spc_start_char] + self._get_chars(string_to_write, length - 1,
+                                                           center)
+        else:
+            new_chars = self._get_chars(string_to_write, length, center)
+        if spc_end_char != -1:
+            insert_index = -1
+            for index in range(length - 1, -1, -1):
+                if new_chars[index] == 32:
+                    insert_index = index
+                    break
+            new_chars[insert_index] = spc_end_char
+        if clear:
+            if self._momentary_line:
+                var = list(self._momentary_line)
+            else:
+                var = list(BLANK_LINE)
+        elif var != self._current_line:
+            var = list(self._current_line)
+        for index in range(length):
+            var[offset + index] = new_chars[index]
+        return var
+    def clear(self):
+        """ Clears the display line. """
+        self._momentary_line = []
+        self._current_line = list(BLANK_LINE)
+        self._last_sent_message = None
+        self._request_send_message()
+    def revert(self):
+        """ Reverts momentary display back to default. """
+        self._momentary_line = []
+        self._request_send_message()
+    def update(self):
+        if self.is_enabled():
+            self._last_sent_message = None
+            self._request_send_message()
+    def _request_send_message(self):
+        """ Requests that a message be sent and schedules it via Task. """
+        self._send_message_task.restart()
+    def _send_message(self):
+        """ Determines which message should be sent. """
+        if self.is_enabled():
+            if self._momentary_line:
+                self.send_midi(tuple(self._header + self._momentary_line + [247]))
+            else:
+                self.send_midi(tuple(self._header + self._current_line + [247]))
+    def send_midi(self, midi_bytes):
+        """ Sends the given bytes out if they aren't equal to the last sent bytes. """
+        if midi_bytes != self._last_sent_message:
+            self.canonical_parent._send_midi(midi_bytes)
+            self._last_sent_message = midi_bytes
+    def _get_chars(self, string, num_chars, should_center):
+        """ Returns a list of MIDI values derived from the string. Crops if necessary and
+        centers if specified. """
+        assert isinstance(string, (str, unicode)) and isinstance(num_chars, int)
+        # used to prevent issues with reading really long clip names like ClyphX Snaps
+        if len(string) > 75:
+            string = string[0:num_chars]
+        if len(string) > num_chars:
+            for um in CHARS_TO_REMOVE:
+                while ((len(string) > num_chars) and (string.rfind(um, 1) != -1)):
+                    um_pos = string.rfind(um, 1)
+                    string = (string[:um_pos] + string[(um_pos + 1):])
+            if len(string) > num_chars:
+                string = string[0:num_chars]
+        else:
+            if should_center:
+                string = string.center(num_chars)
+            else:
+                string = string.ljust(num_chars)
+        converted_string = []
+        for c in string:
+            new_char = ord(c)
+            if new_char > 127:
+                new_char = 63
+            converted_string.append(new_char)
+        return converted_string
+ 
+************************************************
+CustomEncoderElement.py
+************************************************
+ 
+#----------------------------------------------------------------------------------------
+# In this file, you can define a list of parameters that should use a particular LED ring mode.
+# Instructions on how to do this can be found about halfway through this file.
+#
+# --> Do not change the spacing or punctuation in this file.
+# --> Do not change the name of this file.
+#----------------------------------------------------------------------------------------
+import Live
+from _Framework.ButtonElement import ButtonElement
+from _DDC.RingedEncoderElement import *
+WALK_VALUE = 64
+FILL_VALUE = 65
+EQ_VALUE = 66
+SPREAD_VALUE = 67
+SKIP_MODES = (MAP_NONE, MAP_MANUAL)
+PARAM_DICT = {}
+def add(device_name, param_name, num_steps):
+    assert isinstance(num_steps, int) and num_steps in xrange(64, 68)
+    if device_name not in PARAM_DICT:
+        PARAM_DICT[device_name] = {}
+    PARAM_DICT[device_name][param_name] = num_steps
+""" For each parameter that you'd like to define a custom LED ring mode for, you will use
+the following example line as a template.  The values within the parentheses are as
+follows:
+- DeviceClassName - The devices class name.  For non-native devices, you can find this by
+                    looking in the .ddc_dev file you created for the device.  This file
+                    is located within your user directory in:
+                    nativeKONTROL/DDC_Editor/Devices.
+                    For native Live devices, you can find the class name in the
+                    Live Device Info.html file in the Miscellaneous folder on the
+                    repository. It's the name listed in parentheses (such as
+                    LoungeLizard), which is the class name for Electric.
+- ParameterName -   The name of the parameter.  You can find this in the same place as
+                    you'll find the DeviceClassName.
+- RingMode (WALK_VALUE) -   This value determines the LED ring mode to use. The possible
+                            ring modes are:
+                            WALK_VALUE
+                            FILL_VALUE
+                            EQ_VALUE
+                            SPREAD_VALUE
+"""
+# Copy and paste this line and just change the three settings within the parentheses.
+# DO NOT remove/change any of the punctuation.  You can define as many parameters as you like.
+add('Instrument Rack', 'Macro 1', WALK_VALUE)
+add('Instrument Rack', 'Macro 2', WALK_VALUE)
+add('Instrument Rack', 'Macro 3', WALK_VALUE)
+add('Instrument Rack', 'Macro 4', WALK_VALUE)
+add('Instrument Rack', 'Chain Selector', WALK_VALUE)
+class CustomEncoderElement(RingedEncoderElement):
+    """ CustomEncoderElement for use with LI Code that handles updating LED ring types
+    depending on the type of parameter being controlled. """
+    def __init__(self, msg_type, channel, identifier, map_mode, name='', *a, **k):
+        self._ring_mode_button = ButtonElement(False, 1, 15, identifier + 32, name=name +
+                                               ' Ring_Mode_Button')
+        super(CustomEncoderElement, self).__init__(msg_type, channel, identifier,
+                                                   map_mode, name=name, *a, **k)
+    def disconnect(self):
+        self._ring_mode_button = None
+        super(CustomEncoderElement, self).disconnect()
+    def set_ring_mode(self, mode):
+        if mode in SKIP_MODES:
+            self._ring_mode_button.send_value(FILL_VALUE, True)
+        else:
+            self._ring_mode_button.send_value(self._get_ring_value(mode), True)
+    def _get_ring_value(self, mode):
+        param = self.mapped_parameter()
+        parent = ('MixerDevice' if type(param.canonical_parent) ==
+                  Live.MixerDevice.MixerDevice else param.canonical_parent.class_name)
+        if parent in PARAM_DICT and param.original_name in PARAM_DICT[parent]:
+            return PARAM_DICT[parent][param.original_name]
+        if mode == MAP_BIPOLAR:
+            return EQ_VALUE
+        elif mode == MAP_QUANTIZED:
+            return WALK_VALUE
+        return FILL_VALUE
+ 
+************************************************
+DisplayAdapter.py
+************************************************
+ 
+from _Framework.ControlSurfaceComponent import ControlSurfaceComponent
+from _Framework.SubjectSlot import subject_slot, subject_slot_group
+from SLDisplayLine import SLDisplayLine, HALF_SEGMENT, HALF_SEGMENT_OFFSETS
+NUM_PARAMS_TO_MONITOR = 16
+""" Parameter names that need to be translated for displaying purposes. """
+TRANSLATED_PARAM_NAMES = {
+    'Track Volume': 'Volume',
+    'Track Panning': 'Pan',
+}
+class DisplayAdapter(ControlSurfaceComponent):
+    def __init__(self, device_component, *a, **k):
+        super(DisplayAdapter, self).__init__(name='Display_Adapter', *a, **k)
+        self._display_lines = [SLDisplayLine(i + 1) for i in xrange(4)]
+        self._device_component = device_component
+        self._parameters_to_monitor = None
+        self._on_encoder_parameters_changed.subject = self._device_component
+    def on_script_close(self):
+        for line in self._display_lines:
+            line.clear()
+    @subject_slot('encoder_parameters')
+    def _on_encoder_parameters_changed(self):
+        self._parameters_to_monitor = []
+        for index in xrange(NUM_PARAMS_TO_MONITOR):
+            param = self._device_component.encoder_parameters[index]
+            self._parameters_to_monitor.append(param)
+            self._on_encoder_parameter_name_changed(param, index)
+            self._on_encoder_parameter_value_changed(param, index)
+        self._on_encoder_parameter_value_changed.\
+            replace_subjects(self._parameters_to_monitor)
+    def _on_encoder_parameter_name_changed(self, parameter, index):
+        param_name = (TRANSLATED_PARAM_NAMES.get(parameter.name, parameter.name)
+                      if parameter is not None else '-')
+        self._display_lines[0 if index < 8 else 1].write(HALF_SEGMENT_OFFSETS[index % 8],
+                                                         HALF_SEGMENT, param_name, True)
+    @subject_slot_group('value')
+    def _on_encoder_parameter_value_changed(self, parameter, index=None):
+        param_index = (index if index is not None else
+                       self._parameters_to_monitor.index(parameter))
+        param_value = unicode(parameter) if parameter is not None else '-'
+        self._display_lines[2 if param_index < 8 else 3].\
+            write(HALF_SEGMENT_OFFSETS[param_index % 8], HALF_SEGMENT, param_value, True)
+ 
+************************************************
+ControlAliases.txt
+************************************************
+ 
+Encoder_Group_A = Encoders
+Encoder_Group_A_1 = 1
+Encoder_Group_A_2 = 2
+Encoder_Group_A_3 = 3
+Encoder_Group_A_4 = 4
+Encoder_Group_A_5 = 5
+Encoder_Group_A_6 = 6
+Encoder_Group_A_7 = 7
+Encoder_Group_A_8 = 8
+Encoder_Group_B = Knobs
+Encoder_Group_B_1 = 1
+Encoder_Group_B_2 = 2
+Encoder_Group_B_3 = 3
+Encoder_Group_B_4 = 4
+Encoder_Group_B_5 = 5
+Encoder_Group_B_6 = 6
+Encoder_Group_B_7 = 7
+Encoder_Group_B_8 = 8
+Encoder_Group_C = Faders
+Encoder_Group_C_1 = 1
+Encoder_Group_C_2 = 2
+Encoder_Group_C_3 = 3
+Encoder_Group_C_4 = 4
+Encoder_Group_C_5 = 5
+Encoder_Group_C_6 = 6
+Encoder_Group_C_7 = 7
+Encoder_Group_C_8 = 8
+Encoder_Group_D = Not Used
+Encoder_Group_D_1 = 1
+Encoder_Group_D_2 = 2
+Encoder_Group_D_3 = 3
+Encoder_Group_D_4 = 4
+Encoder_Group_D_5 = 5
+Encoder_Group_D_6 = 6
+Encoder_Group_D_7 = 7
+Encoder_Group_D_8 = 8
+Button_Group_A = Left1
+Button_Group_A_1 = 1
+Button_Group_A_2 = 2
+Button_Group_A_3 = 3
+Button_Group_A_4 = 4
+Button_Group_A_5 = 5
+Button_Group_A_6 = 6
+Button_Group_A_7 = 7
+Button_Group_A_8 = 8
+Button_Group_B = Left2
+Button_Group_B_1 = 1
+Button_Group_B_2 = 2
+Button_Group_B_3 = 3
+Button_Group_B_4 = 4
+Button_Group_B_5 = 5
+Button_Group_B_6 = 6
+Button_Group_B_7 = 7
+Button_Group_B_8 = 8
+Button_Group_C = Right1
+Button_Group_C_1 = 1
+Button_Group_C_2 = 2
+Button_Group_C_3 = 3
+Button_Group_C_4 = 4
+Button_Group_C_5 = 5
+Button_Group_C_6 = 6
+Button_Group_C_7 = 7
+Button_Group_C_8 = 8
+Button_Group_D = Right2
+Button_Group_D_1 = 1
+Button_Group_D_2 = 2
+Button_Group_D_3 = 3
+Button_Group_D_4 = 4
+Button_Group_D_5 = 5
+Button_Group_D_6 = 6
+Button_Group_D_7 = 7
+Button_Group_D_8 = 8
+ 
+************************************************
+AdvancedComms.py
+************************************************
+ 
+#----------------------------------------------------------------------------------------
+# This file allows you to handle advanced communication with a controller.
+#
+# PLEASE NOTE:
+# This is strictly intended for use by users who understand Python.  Incorrect formatting
+# or code written in this file could cause the script to stop working.
+#----------------------------------------------------------------------------------------
+from _Framework.ControlSurfaceComponent import ControlSurfaceComponent
+class AdvancedComms(ControlSurfaceComponent):
+    """ AdvancedComms allows you to send/receive SysEx and other forms of MIDI messages
+    to a controller. """
+    def __init__(self, *a, **k):
+        super(AdvancedComms, self).__init__(name='Advanced_Controller_Comms', *a, **k)
+    def on_init(self):
+        """ This method is called upon the script loading (as well as a new set being
+        loaded) and would typically be used to send some sort of initialization message
+        to the controller.  The example below shows how that can be done. _send_midi can
+        send a tuple containing any valid MIDI messages. """
+        self.canonical_parent._send_midi((240, 0, 32, 41, 3, 3, 18, 0, 4, 0, 1, 1, 247))
+    def on_disconnect(self):
+        """ This method is called upon the script disconnecting and would typically be
+        used to send some sort of reset or goodbye message to the controller.  The
+        example below shows how that can be done. _send_midi can send a tuple containing
+        any valid MIDI messages. """
+        self.canonical_parent._send_midi((240, 0, 32, 41, 3, 3, 18, 0, 4, 0, 1, 0, 247))
+    def on_sysex_received(self, received_bytes):
+        """ This method is called any time SysEx is received from the controller.
+        received_bytes is a tuple containing the SyxEx message that was received. """
+        pass
+ 
+************************************************
+Mappings.py
+************************************************
+ 
+PAGE_NAMES = ("page 1","page 2","Untitled","Untitled","Untitled","Untitled","Untitled","Untitled")
+DEVICE_CLASS_NAMES = ("InstrumentGroupDevice","AudioEffectGroupDevice","MixerDevice")
+DEVICE_INSTANCE_NAMES = (None,None,None)
+ENCODER_TYPES = ("Relative (Signed Bit)","Absolute","Absolute","Absolute")
+ENCODER_CHANNELS = (0,0,0,0)
+ENCODER_MAPPING = (((0,'Macro 1'),(0,'Chain Selector'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 2'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 3'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 4'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Chain Selector'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 5'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 6'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 7'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((0,'Macro 8'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((2,'Track Volume'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')),((-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-'),(-1,'-')))
+BUTTON_TYPES = ("CC","CC","CC","CC")
+BUTTON_CHANNELS = (0,0,0,0)
+BUTTON_MAPPING = (((0,'Device On',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((1,'Device On',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)),((-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127),(-1,'-',False,0,127)))
+DIRECT_PAGE_BUTTONS = ('CC',0,0,127)
+PREV_NEXT_PAGE_BUTTONS = ('CC',0,0,127)
+LOCK_BUTTON = ('CC',0,0,127)

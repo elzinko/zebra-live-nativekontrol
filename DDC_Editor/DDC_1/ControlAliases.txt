@@ -1,0 +1,79 @@
+Encoder_Group_A = Encoders
+Encoder_Group_A_1 = 1
+Encoder_Group_A_2 = 2
+Encoder_Group_A_3 = 3
+Encoder_Group_A_4 = 4
+Encoder_Group_A_5 = 5
+Encoder_Group_A_6 = 6
+Encoder_Group_A_7 = 7
+Encoder_Group_A_8 = 8
+
+Encoder_Group_B = Knobs
+Encoder_Group_B_1 = 1
+Encoder_Group_B_2 = 2
+Encoder_Group_B_3 = 3
+Encoder_Group_B_4 = 4
+Encoder_Group_B_5 = 5
+Encoder_Group_B_6 = 6
+Encoder_Group_B_7 = 7
+Encoder_Group_B_8 = 8
+
+Encoder_Group_C = Faders
+Encoder_Group_C_1 = 1
+Encoder_Group_C_2 = 2
+Encoder_Group_C_3 = 3
+Encoder_Group_C_4 = 4
+Encoder_Group_C_5 = 5
+Encoder_Group_C_6 = 6
+Encoder_Group_C_7 = 7
+Encoder_Group_C_8 = 8
+
+Encoder_Group_D = Not Used
+Encoder_Group_D_1 = 1
+Encoder_Group_D_2 = 2
+Encoder_Group_D_3 = 3
+Encoder_Group_D_4 = 4
+Encoder_Group_D_5 = 5
+Encoder_Group_D_6 = 6
+Encoder_Group_D_7 = 7
+Encoder_Group_D_8 = 8
+
+Button_Group_A = Left1
+Button_Group_A_1 = 1
+Button_Group_A_2 = 2
+Button_Group_A_3 = 3
+Button_Group_A_4 = 4
+Button_Group_A_5 = 5
+Button_Group_A_6 = 6
+Button_Group_A_7 = 7
+Button_Group_A_8 = 8
+
+Button_Group_B = Left2
+Button_Group_B_1 = 1
+Button_Group_B_2 = 2
+Button_Group_B_3 = 3
+Button_Group_B_4 = 4
+Button_Group_B_5 = 5
+Button_Group_B_6 = 6
+Button_Group_B_7 = 7
+Button_Group_B_8 = 8
+
+Button_Group_C = Right1
+Button_Group_C_1 = 1
+Button_Group_C_2 = 2
+Button_Group_C_3 = 3
+Button_Group_C_4 = 4
+Button_Group_C_5 = 5
+Button_Group_C_6 = 6
+Button_Group_C_7 = 7
+Button_Group_C_8 = 8
+
+Button_Group_D = Right2
+Button_Group_D_1 = 1
+Button_Group_D_2 = 2
+Button_Group_D_3 = 3
+Button_Group_D_4 = 4
+Button_Group_D_5 = 5
+Button_Group_D_6 = 6
+Button_Group_D_7 = 7
+Button_Group_D_8 = 8

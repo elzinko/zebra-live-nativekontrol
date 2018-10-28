@@ -1,0 +1,199 @@
+Following are the names of the Arsenal Matrix Modes that can be used in your Arsenal
+scripts along with a brief description of each Mode. You can specify the Modes your
+Arsenal scripts should use in each script's Settings-Matrix Mode List.txt file.
+
+
+NAME: CHOP_AND_LOOP_MONO
+VERSION: v1.0.8
+This Mode sets up the MATRIX for monophonic Clip Chopping and Loop Control over
+the playing or selected Clip on the current Track. 
+
+NAME: CLIP_PLAY_MONO
+VERSION: v1.0.8
+This Mode provides 3 monophonic Sub-Modes for controlling the playing or selected
+Clip on the current Track: Chop/Loop, Scrub/Loop and Chromatic.  These Sub-Modes can
+be toggled between via the Button used for selecting this Mode. 
+
+NAME: CLIP_PLAY_POLY
+VERSION: v1.0.8
+This Mode provides 3 polyphonic Sub-Modes for playing/adjusting Clips across the
+Tracks within the Grid Selector: Chop, Scrub and Loop.  These Sub-Modes can be toggled
+between via the Button used for selecting this Mode. 
+
+NAME: CLYPHX
+VERSION: v1.0.8
+This Mode sets up the MATRIX for triggering ClyphX actions. 
+
+NAME: CUE
+VERSION: v1.0.8
+This Mode sets up the MATRIX for launching Cues (aka Arrangement View
+Locators). 
+
+NAME: CUE_SNAP
+VERSION: v1.0.8
+This Mode sets up the MATRIX for launching Cues (aka Arrangement View Locators)
+as well as storing/launching Session Snapshots. 
+
+NAME: DEVICE
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling parameters of the selected Device
+(indicated by a blue hand icon on the Device's title bar). 
+
+NAME: DRUM
+VERSION: v1.0.8
+This Mode sets up the MATRIX for playing Drum instruments (other than just the
+Drum Rack) on the current Track. 
+
+NAME: GLOBAL_USER
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling user-assignable global parameters
+and properties as well as triggering ClyphX actions. 
+
+NAME: HM_CHAIN
+VERSION: v1.0.8
+This Mode sets up the MATRIX for HazMapping to parameters of the selected Chain
+of a Rack on the current Track. 
+
+NAME: HM_MIX
+VERSION: v1.0.8
+This Mode sets up the MATRIX for HazMapping to parameters across the Tracks
+within the Grid Selector. 
+
+NAME: HM_TRACK
+VERSION: v1.0.8
+This Mode sets up the MATRIX for HazMapping to parameters on the current
+Track. 
+
+NAME: LP1_USER_1
+VERSION: v1.0.8
+This Mode provides access to the Launchpad's User 1 Mode.  This Mode can only be
+used with the Launchpad. 
+
+NAME: LP_MIX
+VERSION: v1.0.8
+This Mode provides access to the Launchpad's Mixer Mode.  This mode is meant for
+use with the Launchpad and Launchpad MK2, but can be used with any Arsenal-powered
+Control Surface script that includes an 8 x 8 MATRIX and 8 MATRIX ACCESSORY
+BUTTONS. 
+
+NAME: METERS
+VERSION: v1.0.8
+This Mode sets up the MATRIX to display Level Meters and control the Volume of the
+Tracks within the Grid Selector as well as the Master Track. 
+
+NAME: MIX
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling Mixer-related parameters of the
+Tracks within the Grid Selector. 
+
+NAME: NOTE
+VERSION: v1.0.8
+This Mode provides 3 Sub-Modes for playing instruments on the current Track: Scale,
+Drum Rack and Simpler.  These Sub-Modes will be automatically selected based on the
+contents of the Track. 
+
+NAME: NOTE_CAPTURE
+VERSION: v1.0.8
+This Mode sets up the MATRIX for playing Notes that be captured from the selected
+Clip on the current Track. 
+
+NAME: NOTE_PLUS
+VERSION: v1.0.8
+This Mode provides 3 Sub-Modes for playing instruments on the current Track: Scale,
+Drum Rack and Simpler.  The Drum Rack and Simpler Sub-Modes also include
+Step-Sequencing and 16 Levels functionality.  These Sub-Modes will be automatically
+selected based on the contents of the Track. 
+
+NAME: PAN
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling the Panning of the Tracks within the
+Grid Selector. 
+
+NAME: PLUGIN
+VERSION: v1.0.8
+This Mode sets up the MATRIX for Plugin preset selection on the current Track. 
+
+NAME: SCALE
+VERSION: v1.0.8
+This Mode sets up the MATRIX to play Scales and is useful for playing virtually
+any instrument on the current Track. 
+
+NAME: SCALE_SEQ
+VERSION: v1.0.8
+This Mode sets up the MATRIX for Scale-based polyphonic Step-Sequencing on the
+current Track. 
+
+NAME: SENDS
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling Send Levels of the Tracks within the
+Grid Selector. 
+
+NAME: SESSION
+VERSION: v1.0.8
+This Mode sets up the MATRIX for launching Session View Clips on the Tracks and
+Scenes within the Grid Selector as well as navigating in Session View. 
+
+NAME: SESSION_DELETE
+VERSION: v1.0.8
+This Mode sets up the MATRIX for deleting Session View Clips and Scenes within
+the Grid Selector as well as navigating in Session View. 
+
+NAME: SESSION_DUPE
+VERSION: v1.0.8
+This Mode sets up the MATRIX for duplicating Session View Clips and Scenes within
+the Grid Selector as well as navigating in Session View. 
+
+NAME: SESSION_RECORD
+VERSION: v1.0.8
+This Mode sets up the MATRIX for recording/overdubbing Session View Clips within
+the Grid Selector as well as navigating in Session View. 
+
+NAME: SESSION_SELECT
+VERSION: v1.0.8
+This Mode sets up the MATRIX for selecting Session View Clips and Scenes within
+the Grid Selector as well as navigating in Session View. 
+
+NAME: SESSION_SNAP
+VERSION: v1.0.8
+This Mode sets up the MATRIX for storing/launching Session Snapshots. 
+
+NAME: SESSION_SPLIT
+VERSION: v1.0.8
+This Mode sets up the MATRIX for launching Session View Clips on the Tracks and
+Scenes within the Grid Selector as well as Stopping, Muting, Soloing and Arming
+Tracks. 
+
+NAME: SONG_NAV
+VERSION: v1.0.8
+This Mode sets up the MATRIX for quickly navigating the timeline of songs and
+displaying where you are along the timeline. 
+
+NAME: TRACK
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling Mixer-related parameters of the
+current Track. 
+
+NAME: USER
+VERSION: v1.0.8
+This Mode sets up the MATRIX for use with Max for Live and/or MIDI mapping on
+MIDI channel 6. 
+
+NAME: USER_NOTE
+VERSION: v1.0.8
+This Mode sets up the MATRIX for playing user-assignable Notes. 
+
+NAME: VOLUME
+VERSION: v1.0.8
+This Mode sets up the MATRIX for controlling the Volume of the Tracks within the
+Grid Selector. 
+
+NAME: X_Y
+VERSION: v1.0.8
+This Mode sets up the MATRIX to function as an X/Y Pad that can control two
+parameters anywhere within a Live Set. 
+
+NAME: X_Y_TRACK
+VERSION: v1.0.8
+This Mode sets up the MATRIX to function as an X/Y Pad that can control two
+parameters on the current Track. 
+

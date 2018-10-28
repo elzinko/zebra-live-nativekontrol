@@ -1,0 +1,98 @@
+#********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+#********************************** [SETTINGS] *****************************************
+
+# Below, you can specify a list of Variables to use in Action Lists.
+
+# The entry format is %VARIABLE_NAME% = VALUE
+
+# VARIABLE_NAME = A unique one-word name for the Variable enclosed in percent signs.
+# VALUE = The value or expression to assign to the Variable.  The value can contain any
+          value or valid Python expression, but cannot contain semicolons.
+
+# See the Variables section of the manual for more info on Variables.
+
+
+# The Variables listed below are just examples and can be removed.
+
+%EX_VAR_1% = 10
+
+%EX_VAR_2% = (%EX_VAR_2% + 1)
+
+%EX_VAR_3% = (1 if %EX_VAR_2% % 2 == 0 else 0)
+
+%EX_VAR_4% = IN "Computer Keyboard"
+
+
+%TRACKI% = 1
+%ROOT% = %CTRLI%/dev
+
+
+# MK2
+
+%MK2% = "MK2"/dev
+
+%MK2_INSTI% = 1
+
+%MK2_ON% = "MK2"/MUTE OFF
+
+%MK2_ARM% = "MK2"/ARM ON
+
+%MK2_VOL% = "MK2"/VOL 107
+
+%MK2_TRACK_BASE% = %MK2% set 0 0 0 0 0 0 0 
+
+%MK2_TRACK% = %MK2_TRACK_BASE% %TRACKI%
+
+%MK2_INST% = %MK2%(1.%TRACKI%.1)
+
+%MK2_INST_CSEL% = %MK2_INST% csel %INSTI%
+
+%MK2_SUBINST% = %MK2%(1.%TRACKI%.1.%INSTI%)
+
+%SOLOFF% = %MK2_INST% ch(all) SOLO OFF
+
+%SOLON% = %MK2_INST% ch(%INSTI%) SOLO ON
+
+
+
+# PUSH VARIABLES
+
+%PUSH_VERSION% = 1
+
+%PUSH% = "PUSH"/dev
+
+%PUSH_ON% = "PUSH"/MUTE OFF
+
+%PUSH_ARM% = "PUSH"/ARM ON
+
+%PUSH_VOL% = "PUSH"/VOL 107
+
+%PUSH_LIVE% = PUSH MODE LIVE
+
+%PUSH_USER% = PUSH MODE USER
+
+%PUSH_LOCK% = ARSENAL PS%PUSH_VERSION%_A LOCK
+
+# E_MODE 5 : DEVICE MODE
+%PUSH_DEVICE% = ARSENAL PS%PUSH_VERSION%_A E_MODE 5
+
+%PUSH_KEY% = ARSENAL PS%PUSH_VERSION%_A SCL INKEY OFF
+
+%PUSH_TRACK% = %PUSH% SET 0 0 0 0 0 0 0 %TRACKI%
+
+%PUSH_SEL% = %PUSH%(1) SEL
+
+%PUSH_TRACK_SEL% = %PUSH%(1.%TRACKI%.1) SEL
+
+
+

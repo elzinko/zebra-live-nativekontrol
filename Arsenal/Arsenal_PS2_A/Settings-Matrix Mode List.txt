@@ -1,0 +1,37 @@
+VERSION = 1.0.2
+
+********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+
+********************************** [MATRIX MODES] ************************************
+
+# The following settings determine the Matrix Modes that will be accessible for the
+# script you're using and the order in which the Matrix Modes will be accessed.  For
+# example, the Mode specified for MODE_1 will be the first Mode, MODE_2 will be the
+# second Mode and so on.
+
+# For each of the Modes (such as MODE_1), you'll specify the name of the Mode to use.
+# By default, the only Modes that are available are SESSION (sets up the Matrix for
+# clip launching) and NONE (a Mode that does nothing, but can be used with Max for
+# Live), both of which are included with Arsenal.  After installing an Arsenal Matrix
+# Mode, it will be available to be specified here.  The name you should specify for the
+# Arsenal Matrix Mode is covered in the manual of the script you're using.
+
+
+MODE_1 = SCALE
+MODE_2 = SESSION
+MODE_3 = NOTE_PLUS
+MODE_4 = SESSION_SPLIT
+MODE_5 = CLYPHX MY ACTIONS
+MODE_6 = NOTE
+MODE_7 = NONE
+MODE_8 = NONE

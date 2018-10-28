@@ -1,0 +1,45 @@
+#********************************** [SETTINGS NOTES] **********************************
+
+# Please DO NOT change any of the spacing in this file.
+
+# Please DO NOT change the name of this file or its file extension.  When done making
+# your changes to the settings below, just save the file.
+
+# After saving this file, you will need to load a new Live Set/reload the
+# current Live Set for your changes to take effect.
+
+
+#********************************** [SETTINGS] *****************************************
+
+# Below, you can specify a list of OSC Addresses to use as X-OSC triggers.
+
+# The entry format is: ADDRESS = ON_ACTION_LIST
+
+# ADDRESS = The OSC address.
+# ON_ACTION_LIST = The Action List to trigger when an on value is received.
+
+# Example: /1/push1 = metro
+
+
+# You can optionally specify an action list to trigger when an off value is received.
+# To do that, place a colon after the On Action List and then specify the Off Action List.
+
+# Example: /1/push2 = 1/mute ; 2/mute : 3/play >
+
+# To trigger the same Action List for the On and Off Actions Lists, just specify
+# an asterisk for the Off Action List.
+
+# Example: /1/push3 = 1/mute : *
+
+
+# Below is an example list that has been commented out (the # at the beginning of
+# a line makes the line a comment). Your list should be formatted in the same way
+# except without the # at the beginning of each line.
+
+
+# /1/button1 = mute : *
+# /1/button2 = solo
+# /1/button3 = arm
+# /1/button4 = mon
+
+# >>>>>>>> DELETE THIS ENTIRE LINE AND START YOUR LIST HERE <<<<<<<<
