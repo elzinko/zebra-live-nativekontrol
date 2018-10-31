@@ -48,6 +48,8 @@
 
 %INSTI%=1
 
+%MK2_SEL% = "MK2"/SEL
+
 %MK2_ON% = "MK2"/MUTE OFF
 
 %MK2_ARM% = "MK2"/ARM ON
@@ -106,10 +108,12 @@
 
 %PUSH_TRACK% = %PUSH% SET 0 0 0 0 0 0 0 %TRACKI%
 
-%PUSH_SEL% = %PUSH%(1) SEL
+%PUSH_FIRST_SEL% = %PUSH%(1) SEL
 
-%PUSH_TRACK_SEL% = %PUSH%(1.%TRACKI%.1) SEL
+%PUSH_DEV_SEL% = %PUSH%(1.%TRACKI%.1) SEL
 
 %PUSH_IN_1% = "PUSH"/IN "Arsenal_PS1_A Input (Ableton Push (User Port))"
 
 %PUSH_IN_2% = "PUSH"/IN "Arsenal_PS2_A Input (Ableton Push 2 (User Port))"
+
+%PUSH_SEL% = "PUSH"/SEL

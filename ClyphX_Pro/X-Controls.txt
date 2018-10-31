@@ -52,13 +52,13 @@
 
 # BTN_4 = CC, 9, 3, 1, 5, MON
 
-LCXL_CC_1 = CC, 1, 32, 0, 127, $MK2_T_1$
+LCXL_CC_1 = CC, 1, 8, 0, 127, $MK2_T_1$
 
-LCXL_CC_2 = CC, 1, 33, 0, 127, $MK2_T_2$
+LCXL_CC_2 = CC, 1, 9, 0, 127, $MK2_T_2$
 
-LCXL_CC_3 = CC, 1, 34, 0, 127, $MK2_T_3$
+LCXL_CC_3 = CC, 1, 10, 0, 127, $MK2_T_3$
 
-LCXL_CC_12 = CC, 1, 35, 0, 127, $MK2_T_12$
+LCXL_CC_12 = CC, 1, 11, 0, 127, $MK2_T_12$
 
 LCXL_NOTE_1 = NOTE, 1, 36, 0, 127, $PUSH_1$
 
