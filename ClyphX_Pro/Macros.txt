@@ -24,39 +24,41 @@
 
 # MK2
 
-$MK2_1_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(1) SOLO ON; "MK2"/dev(1.1.1.1) SEL
-$MK2_1_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(2) SOLO ON; "MK2"/dev(1.1.1.2) SEL
-$MK2_1_3$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(3) SOLO ON; "MK2"/dev(1.1.1.3) SEL
-$MK2_2_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 2; "MK2"/dev(1.2.1) ch(all) SOLO OFF; "MK2"/dev(1.2.1) ch(1) SOLO ON; "MK2"/dev(1.2.1.1) SEL
-$MK2_2_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 2; "MK2"/dev(1.2.1) ch(all) SOLO OFF; "MK2"/dev(1.2.1) ch(2) SOLO ON; "MK2"/dev(1.2.1.2) SEL
-$MK2_3_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 3; "MK2"/dev(1.3.1) ch(all) SOLO OFF; "MK2"/dev(1.3.1) ch(1) SOLO ON; "MK2"/dev(1.3.1.1) SEL
-$MK2_3_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 3; "MK2"/dev(1.3.1) ch(all) SOLO OFF; "MK2"/dev(1.3.1) ch(2) SOLO ON; "MK2"/dev(1.3.1.2) SEL
-$MK2_4_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 4; "MK2"/dev(1.4.1) ch(all) SOLO OFF; "MK2"/dev(1.4.1) ch(1) SOLO ON; "MK2"/dev(1.4.1.1) SEL
-$MK2_4_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 4; "MK2"/dev(1.4.1) ch(all) SOLO OFF; "MK2"/dev(1.4.1) ch(2) SOLO ON; "MK2"/dev(1.4.1.2) SEL
+$MK2_1_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(1) SOLO ON; "MK2"/DEV(1) CSEL 1; "MK2"/dev(1.1.1.1) SEL; %MK2_DEV_LOCK%
+$MK2_1_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(2) SOLO ON; "MK2"/DEV(1) CSEL 1; "MK2"/dev(1.1.1.2) SEL; %MK2_DEV_LOCK%
+$MK2_1_3$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 1; "MK2"/dev(1.1.1) ch(all) SOLO OFF; "MK2"/dev(1.1.1) ch(3) SOLO ON; "MK2"/DEV(1) CSEL 1; "MK2"/dev(1.1.1.3) SEL; %MK2_DEV_LOCK%
+$MK2_2_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 2; "MK2"/dev(1.2.1) ch(all) SOLO OFF; "MK2"/dev(1.2.1) ch(1) SOLO ON; "MK2"/DEV(1) CSEL 2; "MK2"/dev(1.2.1.1) SEL; %MK2_DEV_LOCK%
+$MK2_2_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 2; "MK2"/dev(1.2.1) ch(all) SOLO OFF; "MK2"/dev(1.2.1) ch(2) SOLO ON; "MK2"/DEV(1) CSEL 2; "MK2"/dev(1.2.1.2) SEL; %MK2_DEV_LOCK%
+$MK2_3_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 3; "MK2"/dev(1.3.1) ch(all) SOLO OFF; "MK2"/dev(1.3.1) ch(1) SOLO ON; "MK2"/DEV(1) CSEL 3; "MK2"/dev(1.3.1.1) SEL; %MK2_DEV_LOCK%
+$MK2_3_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 3; "MK2"/dev(1.3.1) ch(all) SOLO OFF; "MK2"/dev(1.3.1) ch(2) SOLO ON; "MK2"/DEV(1) CSEL 3; "MK2"/dev(1.3.1.2) SEL; %MK2_DEV_LOCK%
+$MK2_4_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 4; "MK2"/dev(1.4.1) ch(all) SOLO OFF; "MK2"/dev(1.4.1) ch(1) SOLO ON; "MK2"/DEV(1) CSEL 4; "MK2"/dev(1.4.1.1) SEL; %MK2_DEV_LOCK%
+$MK2_4_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 4; "MK2"/dev(1.4.1) ch(all) SOLO OFF; "MK2"/dev(1.4.1) ch(2) SOLO ON; "MK2"/DEV(1) CSEL 4; "MK2"/dev(1.4.1.2) SEL; %MK2_DEV_LOCK%
 
-$MK2_I_1$ = %MK2%(1) SEL; %MK2% set 0 0 0 0 0 0 0 %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(1) SOLO ON; %MK2%(1.%TRACKI%.1.1) SEL
-$MK2_I_2$ = %MK2%(1) SEL; %MK2% set 0 0 0 0 0 0 0 %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(2) SOLO ON; %MK2%(1.%TRACKI%.1.2) SEL
-$MK2_I_3$ = %MK2%(1) SEL; %MK2% set 0 0 0 0 0 0 0 %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(3) SOLO ON; %MK2%(1.%TRACKI%.1.3) SEL
-$MK2_I_12$ = %MK2%(1) SEL; %MK2% set 0 0 0 0 0 0 0 %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(1) SOLO ON; %MK2%(1.%TRACKI%.1) ch(2) SOLO ON; %MK2%(1.%TRACKI%.1.1) SEL
-$MK2_I_23$ = %MK2%(1) SEL; %MK2% set 0 0 0 0 0 0 0 %TRACKI%; %MK2%(1.%TRACKI%.1) ch(all) SOLO OFF; %MK2%(1.%TRACKI%.1) ch(2) SOLO ON; %MK2%(1.%TRACKI%.1) ch(3) SOLO ON; %MK2%(1.%TRACKI%.1.2) SEL
+$MK2_T_1$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 %TRACKI%; "MK2"/dev(1.%TRACKI%.1) ch(all) SOLO OFF; "MK2"/dev(1.%TRACKI%.1) ch(1) SOLO ON; "MK2"/DEV(1) CSEL %TRACKI%; "MK2"/dev(1.%TRACKI%.1.1) SEL; %MK2_DEV_LOCK%
+$MK2_T_2$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 %TRACKI%; "MK2"/dev(1.%TRACKI%.1) ch(all) SOLO OFF; "MK2"/dev(1.%TRACKI%.1) ch(2) SOLO ON; "MK2"/DEV(1) CSEL %TRACKI%; "MK2"/dev(1.%TRACKI%.1.2) SEL; %MK2_DEV_LOCK%
+$MK2_T_3$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 %TRACKI%; "MK2"/dev(1.%TRACKI%.1) ch(all) SOLO OFF; "MK2"/dev(1.%TRACKI%.1) ch(3) SOLO ON; "MK2"/DEV(1) CSEL %TRACKI%; "MK2"/dev(1.%TRACKI%.1.3) SEL; %MK2_DEV_LOCK%
+# DEPRECATED - should maybe replace 12 with a 4 having the first 2 instruments chained
+$MK2_T_12$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 %TRACKI%; "MK2"/dev(1.%TRACKI%.1) ch(all) SOLO OFF; "MK2"/dev(1.%TRACKI%.1) ch(1) SOLO ON; "MK2"/dev(1.%TRACKI%.1) ch(2) SOLO ON; "MK2"/DEV(1) CSEL %TRACKI%; "MK2"/dev(1.%TRACKI%.1.1) SEL; %MK2_DEV_LOCK%
+$MK2_T_23$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 %TRACKI%; "MK2"/dev(1.%TRACKI%.1) ch(all) SOLO OFF; "MK2"/dev(1.%TRACKI%.1) ch(2) SOLO ON; "MK2"/dev(1.%TRACKI%.1) ch(3) SOLO ON; "MK2"/DEV(1) CSEL %TRACKI%; "MK2"/dev(1.%TRACKI%.1.2) SEL; %MK2_DEV_LOCK%
 
-$MK2_T_I$ = %MK2%(1.%TRACKI%.1.%MK2_INSTI%) SEL
+$MK2_T_I$ = "MK2"/dev(1) SEL; "MK2"/dev set 0 0 0 0 0 0 0 %TRACKI%; "MK2"/dev(1.%TRACKI%.1) ch(all) SOLO OFF; "MK2"/dev(1.%TRACKI%.1) ch(1) SOLO ON; "MK2"/DEV(1) CSEL %TRACKI%; "MK2"/dev(1.%TRACKI%.1.%INSTI%) SEL; %MK2_DEV_LOCK%
 
-$MK2_INIT$ = %MK2_ON%; %MK2_ARM%; %MK2_VOL%; %MK2_RESET%
+$MK2_INIT$ = %MK2_ON%; %MK2_ARM%; %MK2_VOL%; "MK2"/SEL
 
 
 # PUSH
 
 # on peut rajouter un PUSH_TRACK_SEL à la fin mais comme le push est deja locké, il vaut mieux laisser le focus sur le MK2
 # $PUSH_I$ = %PUSH%(1) SEL; %PUSH_TRACK_BASE% %TRACKI%; %PUSH%(1.%TRACKI%.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
-$PUSH_I$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 %TRACKI%; "PUSH"/dev(1.%TRACKI%.1) SEL
+$PUSH_I$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 %TRACKI%; "PUSH"/dev(1.%TRACKI%.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
 $PUSH_1$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 1; "PUSH"/dev(1.1.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
 $PUSH_2$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 2; "PUSH"/dev(1.2.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
 $PUSH_3$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 3; "PUSH"/dev(1.3.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
 $PUSH_4$ = "PUSH"/dev(1) SEL; "PUSH"/dev set 0 0 0 0 0 0 0 4; "PUSH"/dev(1.4.1) SEL; CS "ARSENAL_PS1_A" DEV LOCK
-$PUSH_INIT$ = %PUSH_USER%; %PUSH_TRACK_SEL%; %PUSH_TRACK_SEL%; %PUSH_LOCK_TRACK%; %PUSH_DEVICE%; %PUSH_KEY%; %PUSH_ON%; %PUSH_ARM%; %PUSH_VOL%; %PUSH_RESET%
+
+$PUSH_INIT$ = %PUSH_USER%; %PUSH_TRACK_SEL%; %PUSH_LOCK_TRACK%; %PUSH_EMODE%; %PUSH_KEY%; %PUSH_ON%; %PUSH_ARM%; %PUSH_VOL%; "PUSH"/SEL
 
 
 # ALL
-$RESET_ALL$ = %PUSH_RESET%; %MK2_RESET%
+$RESET_ALL$ = %PUSH_0%; %MK2_0%
 $INST_SEL$ = "PUSH"/SEL; "MK2"/SEL
